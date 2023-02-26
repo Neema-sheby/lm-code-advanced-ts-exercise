@@ -1,4 +1,4 @@
-import { states } from "./states.mjs";
+import { states } from "./states.js";
 
 export class State {
 	#state = states.MENU;
