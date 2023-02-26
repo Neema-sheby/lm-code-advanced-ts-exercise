@@ -1,5 +1,4 @@
-import { baseUrl } from "./base_url.mjs";
-
+import { baseUrl } from "./base_url";
 export async function fetchPost(id) {
 	try {
 		const result = await fetch(baseUrl + "/api/posts/" + id);

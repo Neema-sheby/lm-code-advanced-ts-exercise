@@ -1,5 +1,5 @@
-import { print, prompt } from "../ui/console.js";
-import { baseUrl } from "./base_url.mjs";
+import { print, prompt } from "../ui/console";
+import { baseUrl } from "./base_url";
 
 export async function sendMessageToServer(message) {
 	try {
