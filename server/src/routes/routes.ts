@@ -1,7 +1,7 @@
 import * as express from "express";
 import { Express } from "express";
 import { getAllPosts } from "../services/posts_service";
-import { getAllUsers } from "../services/users_service";
+import { getAllUsers, users } from "../services/users_service";
 
 /*
 
@@ -57,11 +57,11 @@ function addAPIRoutes(app: Express) {
 	apiRouter.post("/send/", (req, res) => {
 		const { body } = req;
 
-		// we don't do anything with the message, but let's echo it back in the console
-		console.log(`👋 Received "${body.message}"`);
-
 		// reply with a success boolean
-		res.status(200).send({ success: true });
+		console.log(`👋 Received : "${body.message}"`);
+		res.status(200).send({
+			success: true,
+		});
 	});
 
 	// now we'll add some routes that let us browse some blog posts
@@ -83,6 +83,35 @@ function addAPIRoutes(app: Express) {
 	});
 
 	// ❗ [1] See README
+
+	// this route allows the client to add user
+	console.log("✍️ Adding new user to existing Users");
+	apiRouter.post("/users/add", (req, res) => {
+		const { body } = req;
+		const { userName } = body;
+		users.push({
+			id: (users.length + 1).toString(),
+			name: userName,
+			creationDate: new Date(),
+		});
+		res.status(200).send(JSON.stringify({ success: true }));
+	});
+
+	// this route allows the client to add posts
+	console.log("✍️ Adding new posts to existing Posts");
+	apiRouter.post("/posts/add", (req, res) => {
+		const { body } = req;
+		const { title, text, author } = body;
+		const posts = getAllPosts();
+		posts.push({
+			id: (posts.length + 1).toString(),
+			title: title,
+			text: text,
+			author: author,
+		});
+
+		res.status(200).send(JSON.stringify({ success: true, allPosts: posts }));
+	});
 
 	apiRouter.get("/users/:id", (req, res) => {
 		res
