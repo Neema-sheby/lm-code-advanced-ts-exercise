@@ -1,7 +1,8 @@
 import { fetchAllUsers } from "../../../api/fetch_all_users";
 import { clear, print, prompt, printNewLine } from "../../../ui/console";
+import { User } from "../../../types/posts.types";
 
-export async function showAllUsers() {
+export async function showAllUsers(): Promise<Array<User>> {
 	clear("yes");
 
 	printNewLine();

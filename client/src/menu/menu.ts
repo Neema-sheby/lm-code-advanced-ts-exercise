@@ -1,13 +1,14 @@
 import { states } from "../states/states";
 import { clear, print, printNewLine, prompt } from "../ui/console";
 
-export async function showMenu() {
-	clear();
+export async function showMenu(): Promise<string> {
+	clear("yes");
 	print("0. Send Server Message", false);
 	print("1. Show all posts", false);
 	print("2. Show all users", false);
 	print("3. Browse posts", false);
 	print("4. Add user", false);
+	print("5. Add post", false);
 	printNewLine();
 
 	const result = await prompt("What shall we do? ");
@@ -17,6 +18,7 @@ export async function showMenu() {
 	if (result === "2") return states.SHOW_USERS;
 	if (result === "3") return states.BROWSE_POSTS;
 	if (result === "4") return states.ADD_USER;
+	if (result === "5") return states.ADD_POST;
 
 	return states.UNKNOWN;
 }
