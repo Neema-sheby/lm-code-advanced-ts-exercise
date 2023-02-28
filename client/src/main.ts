@@ -4,18 +4,20 @@ import { browsePosts } from "./menu/options/browse_posts/browse_posts";
 import { sendMessage } from "./menu/options/send_message/send_message";
 import { showAllPosts } from "./menu/options/show_all_posts/show_all_posts";
 import { showAllUsers } from "./menu/options/show_all_users/show_all_users";
+import { addNewUser } from "./menu/options/add_newUser/add_newUser";
+import { addNewPost } from "./menu/options/add_newPost/add_newPost";
 import { State } from "./states/state";
 import { states } from "./states/states";
 import { clear, print, printNewLine, prompt } from "./ui/console";
 
-async function begin() {
-	clear(true);
+async function begin(): Promise<void> {
+	clear("yes");
 	print("👋 Welcome to our cool blog browser!");
 	await prompt("⌨️ Press [ENTER] to continue! 🕶️");
 	main();
 }
 
-async function main() {
+async function main(): Promise<void> {
 	let state = new State();
 
 	while (true) {
@@ -45,7 +47,13 @@ async function main() {
 				break;
 			case "ADD_USER":
 				clear();
-				print("🏗️  This functionality has not been implemented!");
+				const newUser = await addNewUser();
+				await prompt("⌨️ Press [ENTER] to return to the main menu! 🕶️");
+				state.set(states.MENU);
+				break;
+			case "ADD_POST":
+				clear();
+				const newPost = await addNewPost();
 				await prompt("⌨️ Press [ENTER] to return to the main menu! 🕶️");
 				state.set(states.MENU);
 				break;
