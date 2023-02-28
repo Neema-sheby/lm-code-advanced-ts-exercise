@@ -1,4 +1,4 @@
-import { print, prompt } from "../ui/console";
+import { print } from "../ui/console";
 import { baseUrl } from "./base_url";
 import { errorMessage } from "../ErrorHandling/errorMessage";
 

@@ -7,7 +7,7 @@ export const validateId = (id: string) => {
 // Validate username
 export function validateName(name: string): boolean {
 	let isString = false;
-	if (!name.match(/[^$A-Za-z]/g)) {
+	if (name.match(/^[a-z][a-z\s]*$/)) {
 		isString = true;
 	}
 	return isString;

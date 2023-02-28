@@ -1,8 +1,10 @@
 import { baseUrl } from "./base_url";
-import { postFoundType, postNotFoundType } from "../types/posts.types";
+import { PostFoundResponseType } from "../types/response.types";
 import { errorMessage } from "../ErrorHandling/errorMessage";
 
-export async function fetchPost(id: string): Promise<postFoundType | string> {
+export async function fetchPost(
+	id: string
+): Promise<PostFoundResponseType | string> {
 	try {
 		const result = await fetch(baseUrl + "/api/posts/" + id);
 		const post = await result.json();

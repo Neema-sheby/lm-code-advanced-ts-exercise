@@ -1,6 +1,6 @@
 import * as express from "express";
 import { Express } from "express";
-import { getAllPosts } from "../services/posts_service";
+import { getAllPosts, posts } from "../services/posts_service";
 import { getAllUsers, users } from "../services/users_service";
 
 /*
@@ -94,7 +94,7 @@ function addAPIRoutes(app: Express) {
 			name: userName,
 			creationDate: new Date(),
 		});
-		res.status(200).send(JSON.stringify({ success: true }));
+		res.status(200).send(JSON.stringify({ userAdded: true }));
 	});
 
 	// this route allows the client to add posts
@@ -102,7 +102,6 @@ function addAPIRoutes(app: Express) {
 	apiRouter.post("/posts/add", (req, res) => {
 		const { body } = req;
 		const { title, text, author } = body;
-		const posts = getAllPosts();
 		posts.push({
 			id: (posts.length + 1).toString(),
 			title: title,
@@ -110,7 +109,7 @@ function addAPIRoutes(app: Express) {
 			author: author,
 		});
 
-		res.status(200).send(JSON.stringify({ success: true, allPosts: posts }));
+		res.status(200).send(JSON.stringify({ postAdded: true }));
 	});
 
 	apiRouter.get("/users/:id", (req, res) => {

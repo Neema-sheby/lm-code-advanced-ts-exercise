@@ -1,16 +1,11 @@
 import { baseUrl } from "./base_url";
 import { errorMessage } from "../ErrorHandling/errorMessage";
 import { printNewLine } from "../ui/console";
-import { User } from "../types/posts.types";
-
-interface successNewUserResponseType {
-	success: boolean;
-	allUsers: Array<User>;
-}
+import { UserAddedResponseType } from "../types/response.types";
 
 export async function sendNewUserToServer(
 	userName: string
-): Promise<successNewUserResponseType | string> {
+): Promise<UserAddedResponseType | string> {
 	try {
 		const response = await fetch(baseUrl + "/api/users/add", {
 			headers: {
@@ -20,7 +15,7 @@ export async function sendNewUserToServer(
 			body: JSON.stringify({ userName }),
 		});
 
-		const result = await response.json();
+		const result: ResponseType = await response.json();
 
 		return result;
 	} catch (err: unknown) {

@@ -1,10 +1,7 @@
 import { fetchPost } from "../../../api/fetch_post";
 import { print, prompt, printNewLine, clear } from "../../../ui/console";
-import {
-	Post,
-	postFoundType,
-	postNotFoundType,
-} from "../../../types/posts.types";
+import { Post } from "../../../types/posts.types";
+import { PostFoundResponseType } from "../../../types/response.types";
 import { states } from "../../../states/states";
 import { validateId } from "../../../ErrorHandling/validation";
 
