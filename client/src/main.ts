@@ -6,6 +6,7 @@ import { showAllPosts } from "./menu/options/show_all_posts/show_all_posts";
 import { showAllUsers } from "./menu/options/show_all_users/show_all_users";
 import { addNewUser } from "./menu/options/add_newUser/add_newUser";
 import { addNewPost } from "./menu/options/add_newPost/add_newPost";
+import { deleteNewUser } from "./menu/options/delete_newUser/delete_newUser";
 import { State } from "./states/state";
 import { states } from "./states/states";
 import { clear, print, printNewLine, prompt } from "./ui/console";
@@ -54,6 +55,12 @@ async function main(): Promise<void> {
 			case "ADD_POST":
 				clear();
 				const newPost = await addNewPost();
+				await prompt("⌨️ Press [ENTER] to return to the main menu! 🕶️");
+				state.set(states.MENU);
+				break;
+			case "DELETE_USER":
+				clear();
+				const deleteUser = await deleteNewUser();
 				await prompt("⌨️ Press [ENTER] to return to the main menu! 🕶️");
 				state.set(states.MENU);
 				break;

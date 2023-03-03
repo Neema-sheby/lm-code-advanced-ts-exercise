@@ -6,6 +6,7 @@ interface States {
 	BROWSE_POSTS: string;
 	ADD_USER: string;
 	ADD_POST: string;
+	DELETE_USER: string;
 	UNKNOWN: string;
 }
 
@@ -20,6 +21,8 @@ export const states: States = {
 
 	ADD_USER: "ADD_USER",
 	ADD_POST: "ADD_POST",
+
+	DELETE_USER: "DELETE_USER",
 
 	UNKNOWN: "UNKNOWN",
 };

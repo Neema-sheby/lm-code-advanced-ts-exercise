@@ -15,3 +15,8 @@ export interface PostAddedResponseType {
 export interface UserAddedResponseType {
 	userAdded: boolean;
 }
+
+export interface UserDeletedResponseType {
+	deleted: boolean;
+	user: string;
+}

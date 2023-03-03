@@ -112,12 +112,35 @@ function addAPIRoutes(app: Express) {
 		res.status(200).send(JSON.stringify({ postAdded: true }));
 	});
 
+	// this route allows to find a user
 	apiRouter.get("/users/:id", (req, res) => {
 		res
 			.status(200)
 			.send(
 				JSON.stringify(getAllUsers().filter((u) => u.id === req.params.id))
 			);
+	});
+
+	// this route allows to delete a user
+
+	apiRouter.get("/delete/:username", (req, res) => {
+		const username = req.params.username;
+
+		const indexNumber = users.findIndex((user) => user.name === username);
+		if (indexNumber !== -1) {
+			users.splice(indexNumber, 1);
+			const response = {
+				deleted: true,
+				user: username,
+			};
+			res.status(200).json(response);
+		} else {
+			const response = {
+				deleted: false,
+				user: username,
+			};
+			res.status(200).json(response);
+		}
 	});
 
 	console.log("🛠️  Applying API router to Express server...");
