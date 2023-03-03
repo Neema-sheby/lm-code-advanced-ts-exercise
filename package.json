@@ -2,7 +2,6 @@
 	"name": "lm-code-advanced-ts-exercise",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
 	"scripts": {
 		"start-server": "nodemon server/src/main.ts --no-warnings",
 		"start-client": "nodemon client/src/main.ts --no-warnings",
