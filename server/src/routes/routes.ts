@@ -123,7 +123,7 @@ function addAPIRoutes(app: Express) {
 
 	// this route allows to delete a user
 
-	apiRouter.get("/users/user/:username", (req, res) => {
+	apiRouter.get("/users/delete/:username", (req, res) => {
 		const username = req.params.username;
 
 		const indexNumber = users.findIndex((user) => user.name === username);

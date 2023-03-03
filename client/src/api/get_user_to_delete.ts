@@ -7,7 +7,7 @@ export async function getUserToDelete(
 	username: string
 ): Promise<UserDeletedResponseType | string> {
 	try {
-		const response = await fetch(baseUrl + "/api/users/user/" + username);
+		const response = await fetch(baseUrl + "/api/users/delete/" + username);
 		const result = await response.json();
 		return result;
 	} catch (err) {
