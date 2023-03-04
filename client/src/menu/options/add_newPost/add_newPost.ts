@@ -1,4 +1,4 @@
-import { clear, printNewLine, prompt } from "../../../ui/console";
+import { print, clear, printNewLine, prompt } from "../../../ui/console";
 import { sendNewPostToServer } from "../../../api/send_new_post_to_server";
 import { states } from "../../../states/states";
 
@@ -17,19 +17,16 @@ export async function addNewPost(): Promise<string> {
 		if (typeof result !== "string") {
 			const { postAdded } = result;
 
-			/// do validation here
-
 			if (postAdded) {
-				console.log("Successfully added the new posts 🥳");
+				print("Successfully added the new posts 🥳");
 				printNewLine();
 			}
 		} else {
-			console.log(result);
+			print(result);
 			printNewLine();
 		}
 	} else {
-		printNewLine();
-		console.log("⛔️ Error: Please enter a valid data");
+		print("⛔️ Error: Please enter the title, post and author name");
 		printNewLine();
 	}
 	return states.MENU;

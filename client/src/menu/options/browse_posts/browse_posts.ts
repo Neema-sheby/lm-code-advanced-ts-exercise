@@ -29,12 +29,11 @@ export async function browsePosts(): Promise<void | string> {
 					author: result.author,
 				};
 
-				console.log(data);
 				printNewLine();
 				await prompt("⌨️ Press [ENTER] to return to the main menu! 🕶️");
 			} else {
 				clear();
-				console.log(`There are no posts with id: ${desiredPostId}`);
+				print(`😮 There are no posts with id: ${desiredPostId}`);
 				printNewLine();
 				await prompt("⌨️ Press [ENTER] to return to the main menu! 🕶️");
 			}
@@ -46,7 +45,7 @@ export async function browsePosts(): Promise<void | string> {
 		}
 	} else {
 		clear();
-		console.log("Enter a valid number for the id");
+		print("😮 Enter a valid number for the id");
 		printNewLine();
 		await prompt("⌨️ Press [ENTER] to return to the main menu! 🕶️");
 		return states.UNKNOWN;
