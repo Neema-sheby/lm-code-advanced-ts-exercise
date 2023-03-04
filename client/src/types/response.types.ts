@@ -18,5 +18,4 @@ export interface UserAddedResponseType {
 
 export interface UserDeletedResponseType {
 	deleted: boolean;
-	user: string;
 }

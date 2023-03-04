@@ -3,18 +3,20 @@ import { getUserToDelete } from "../../../api/get_user_to_delete";
 
 export async function deleteNewUser(): Promise<void> {
 	clear("yes");
-	const username: string = await prompt("Enter the username to delete");
+	const id: string = await prompt("Enter the user id");
 
-	printNewLine();
-	const result = await getUserToDelete(username);
+	if (id) {
+		printNewLine();
+		const response = await getUserToDelete(id);
 
-	if (typeof result === "string") {
-		print(result);
-		return;
+		if (typeof response !== "string") {
+			if (response) {
+				print("🥳 user deleted successfully");
+			} else {
+				print("🤪 user id Not Found");
+			}
+		}
+	} else {
+		print("😅 Please enter the user id");
 	}
-
-	const { deleted, user } = result;
-
-	if (deleted) print(`🥳 ${user} is deleted`);
-	else print(`🥳 ${user} Not Found`);
 }

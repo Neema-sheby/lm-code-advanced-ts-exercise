@@ -1,7 +1,7 @@
 import * as express from "express";
 import { Express } from "express";
-import { getAllPosts, posts } from "../services/posts_service";
-import { getAllUsers, users } from "../services/users_service";
+import { getAllPosts } from "../services/posts_service";
+import { getAllUsers } from "../services/users_service";
 
 /*
 
@@ -89,6 +89,7 @@ function addAPIRoutes(app: Express) {
 	apiRouter.post("/users/add", (req, res) => {
 		const { body } = req;
 		const { userName } = body;
+		const users = getAllUsers();
 		users.push({
 			id: (users.length + 1).toString(),
 			name: userName,
@@ -102,6 +103,8 @@ function addAPIRoutes(app: Express) {
 	apiRouter.post("/posts/add", (req, res) => {
 		const { body } = req;
 		const { title, text, author } = body;
+		const posts = getAllPosts();
+
 		posts.push({
 			id: (posts.length + 1).toString(),
 			title: title,
@@ -123,23 +126,23 @@ function addAPIRoutes(app: Express) {
 
 	// this route allows to delete a user
 
-	apiRouter.get("/users/delete/:username", (req, res) => {
-		const username = req.params.username;
+	apiRouter.delete("/users/:id", (req, res) => {
+		const id = req.params.id;
+		const users = getAllUsers();
+		const indexNumber = users.findIndex((user) => user.id === id);
 
-		const indexNumber = users.findIndex((user) => user.name === username);
 		if (indexNumber !== -1) {
 			users.splice(indexNumber, 1);
-			const response = {
+
+			res.status(200).json({
 				deleted: true,
-				user: username,
-			};
-			res.status(200).json(response);
+				userId: id,
+			});
 		} else {
-			const response = {
+			res.status(404).json({
 				deleted: false,
-				user: username,
-			};
-			res.status(200).json(response);
+				userId: id,
+			});
 		}
 	});
 

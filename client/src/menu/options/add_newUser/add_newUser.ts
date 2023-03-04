@@ -1,4 +1,4 @@
-import { printNewLine, prompt } from "../../../ui/console";
+import { print, printNewLine, prompt } from "../../../ui/console";
 import { clear } from "../../../ui/console";
 import { sendNewUserToServer } from "../../../api/send_newUser_to_server";
 import { states } from "../../../states/states";
@@ -15,16 +15,16 @@ export async function addNewUser(): Promise<string> {
 			printNewLine();
 			const { userAdded } = result;
 			if (userAdded) {
-				console.log("Successfully added user details 🥳");
+				print("Successfully added user details 🥳");
 				printNewLine();
 			}
 		} else {
-			console.log(result);
+			print(result);
 			printNewLine();
 		}
 	} else {
 		printNewLine();
-		console.log("⛔️ Error: Please enter a valid string");
+		print("⛔️ Error: Please enter a valid string");
 		printNewLine();
 	}
 	return states.MENU;
